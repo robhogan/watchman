@@ -20,3 +20,5 @@ jobs:
       - name: Test 
         timeout-minutes: 10
         run: "python3 build/fbcode_builder/getdeps.py --allow-system-packages test --src-dir=. watchman  --project-install-prefix watchman:/usr/local"
+      - name: List
+        run: ls -l _artifacts/mac
