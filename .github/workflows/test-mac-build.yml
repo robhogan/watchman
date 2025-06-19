@@ -1,0 +1,15 @@
+name: test-mac-build
+on:
+  workflow_dispatch:
+jobs:
+  mac-build:
+    continue-on-error: true
+    runs-on: macOS-14
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build watchman
+        run: "SDKROOT=$(xcrun --show-sdk-path) python3 build/fbcode_builder/getdeps.py --allow-system-packages build --src-dir=. watchman  --project-install-prefix watchman:/usr/local"
+      - name: Copy artifacts
+        run: "python3 build/fbcode_builder/getdeps.py --allow-system-packages fixup-dyn-deps --src-dir=. watchman _artifacts/mac  --project-install-prefix watchman:/usr/local --final-install-prefix /usr/local"
+      - name: Test watchman
+        run: "python3 build/fbcode_builder/getdeps.py --allow-system-packages test --src-dir=. watchman  --project-install-prefix watchman:/usr/local"
