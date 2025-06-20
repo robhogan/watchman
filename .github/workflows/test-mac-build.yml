@@ -17,8 +17,7 @@ jobs:
           MACOSX_DEPLOYMENT_TARGET: ${{ github.event.inputs.target }}
       - name: Copy artifacts
         run: "python3 build/fbcode_builder/getdeps.py --allow-system-packages fixup-dyn-deps --src-dir=. watchman _artifacts/mac  --project-install-prefix watchman:/usr/local --final-install-prefix /usr/local"
-      - name: Test 
-        timeout-minutes: 60
+      - name: Test
         run: "python3 build/fbcode_builder/getdeps.py --allow-system-packages test --src-dir=. --num-jobs=1 watchman  --project-install-prefix watchman:/usr/local"
       - name: List
         run: ls -l _artifacts/mac
