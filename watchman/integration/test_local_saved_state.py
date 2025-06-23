@@ -28,7 +28,7 @@ class TestSavedState(WatchmanSCMTestCase.WatchmanSCMTestCase):
     def checkOSApplicability(self) -> None:
         if is_ubuntu():
             self.skipTest("Test is flaky. See Facebook task T36574087.")
-        if "CIRCLECI" in os.environ or "TRAVIS" in os.environ:
+        if "CIRCLECI" in os.environ or "TRAVIS" in os.environ or "GITHUB_ACTION" in os.environ:
             self.skipTest("consistently fails on single core machines!")
         if os.name == "nt":
             self.skipTest("The order of events on Windows is funky")
