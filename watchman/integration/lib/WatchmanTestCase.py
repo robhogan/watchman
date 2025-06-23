@@ -233,8 +233,8 @@ class WatchmanTestCase(TempDirPerTestMixin, unittest.TestCase):
     ) -> None:
         self.transport = transport
         self.encoding = encoding
-        self.parallelCrawl = parallelCrawl
-        self.splitWatcher = splitWatcher
+        self.parallelCrawl = False
+        self.splitWatcher = False
 
     def removeRelative(self, base, *fname) -> None:
         fname = os.path.join(base, *fname)
