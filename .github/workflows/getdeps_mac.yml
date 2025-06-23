@@ -661,4 +661,4 @@ jobs:
         name: watchman
         path: _artifacts
     - name: Test watchman
-      run: python3 build/fbcode_builder/getdeps.py --allow-system-packages test --src-dir=. watchman  --project-install-prefix watchman:/usr/local
+      run: python3 build/fbcode_builder/getdeps.py --allow-system-packages --num-jobs=1 test --src-dir=. watchman  --project-install-prefix watchman:/usr/local
