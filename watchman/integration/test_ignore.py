@@ -16,6 +16,10 @@ from watchman.integration.lib import WatchmanTestCase
 
 @WatchmanTestCase.expand_matrix
 class TestIgnore(WatchmanTestCase.WatchmanTestCase):
+    def checkOSApplicability(self) -> None:
+        if "GITHUB_ACTION" in os.environ:
+            self.skipTest("Flaky on GitHub Actions?")
+
     def test_ignore_git(self) -> None:
         root = self.mkdtemp()
         os.mkdir(os.path.join(root, ".git"))
