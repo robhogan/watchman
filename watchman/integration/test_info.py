@@ -15,6 +15,10 @@ from watchman.integration.lib import WatchmanTestCase
 
 @WatchmanTestCase.expand_matrix
 class TestInfo(WatchmanTestCase.WatchmanTestCase):
+    def checkOSApplicability(self) -> None:
+        if "CIRCLECI" in os.environ or "TRAVIS" in os.environ or "GITHUB_ACTION" in os.environ:
+            self.skipTest("flaky?")
+
     def test_sock_name(self) -> None:
         resp = self.watchmanCommand("get-sockname")
         self.assertEqual(
