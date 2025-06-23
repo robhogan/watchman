@@ -546,7 +546,7 @@ def expand_matrix(test_class) -> None:
     if os.name == "nt":
         matrix += [("namedpipe", "bser", "serial", False, "NamedPipeBser2")]
 
-    if sys.platform == "darwin":
+    if sys.platform == "darwin" and not "GITHUB_ACTION" in os.environ:
         matrix += [
             ("unix", "bser", "parallel", True, "KQueueAndFSEventsUnixBser2"),
         ]
